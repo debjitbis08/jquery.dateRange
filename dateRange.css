@@ -1,10 +1,116 @@
-div.calendarWrap{position:relative;}
-div.calendar{border:1px solid #e6e6e6;overflow:auto;width:460px;background:#f0f0f0;position:absolute;line-height:1em;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px-moz-user-select:none;-webkit-user-select: none;-khtml-user-select: none;user-select: none;}
-div.calendar div.nav{height:24px;}
-div.calendar div.nav div{cursor:pointer;background:#e6e6e6;width:25px;height:25px;text-align:center;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-weight:bold;}
-div.calendar div.nav div.next{position:absolute;right:0;top:0}
-div.calendar div.nav div:hover{background:#d6d6d6;}
-div.calendar table{float:left;margin-right:25px;font-family:verdana;font-size:80%;position:relative;top:-20px}
-div.calendar table td{padding:3px;text-align:center;cursor:pointer;border:1px solid transparent;}
-div.calendar td.selected{border:1px dotted #222;}
-div.calendar td.highlight{background:#ccc;}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+table { border-collapse: collapse; border-spacing: 0; }
+input { vertical-align: middle; }
+body { font:13px/1.231 sans-serif; *font-size:small; }
+input { font:99% sans-serif; }
+body, input { color: #444; }
+
+/**************************************/
+
+div.calendarWrap {
+  font-size: 85%;
+  font-weight: normal;
+  position: relative;
+}
+
+div.calendarWrap input.dateRange {
+  border: 1px solid #CCC;
+  cursor: pointer;
+}
+
+div.calendar {
+  background:#EEE;
+  border:1px solid #CCC;
+  left: 0;
+  margin-top: -1px;
+  overflow:auto;
+  padding: 20px 0;
+  position:absolute;
+  width: 380px;
+}
+
+.ie7 div.calendar {
+  top: 25px;
+}
+
+div.calendar .calheader {
+  text-align: center;
+}
+
+div.calendar .prev,
+div.calendar .next {
+  cursor: pointer;
+  float: left;
+  font-size: 250%;
+  padding: 0 5px;
+}
+
+div.calendar table {
+  float:left;
+  margin: 0 10px;
+}
+div.calendar table td{
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDD;
+  color: #444;
+  cursor: pointer;
+  line-height: 1.6em;
+  padding: 1px;
+  text-align: center;
+  white-space: nowrap;
+  width: 1.6em;
+}
+
+div.calendar table td:hover {
+  background-color: #AAA;
+  color: #FFF;
+}
+
+div.calendar td span {
+  display: block;
+}
+
+div.calendar td.selected span,
+div.calendar td.highlight span {
+  background:#F1F1F1;
+}
+div.calendar a.button {
+  border: 2px solid #BBB;
+  cursor: pointer;
+  float: right;
+  margin: 10px 34px 0 0;
+  padding: 4px;
+}
+
+div.calendar.nextHidden a.button {
+  margin-right: 15px;
+}
+
+div.calendar.prevHidden {
+  width: 361px;
+}
+
+div.calendar.prevHidden .prev {
+  display: none;
+}
+
+div.calendar.nextHidden {
+  width: 361px;
+}
+
+div.calendar.nextHidden .next {
+  display: none;
+}
