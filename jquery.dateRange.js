@@ -5,7 +5,7 @@
           opts = $.extend({}, defaults, options),
           months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           abbreviations = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+          days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
           daySelector = 'tbody td:not(:empty)';
 
       return this.each(function() {
@@ -177,7 +177,7 @@
                 firstDay = first.getDay(),
                 totalDays = last.getDate(),
                 weeks = Math.ceil((totalDays + firstDay) / 7),
-                $table, header, cell, i, j, row, count = 0;
+                $table, header, cell, i, j, row, count = 0, daysRow, thead, caption;
 
             if (!table) {
 

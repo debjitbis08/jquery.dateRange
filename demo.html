@@ -1,26 +1,24 @@
 <html>
 <head>
+   <title>Date Range Picker</title>
    <link href="dateRange.css" media="screen" rel="stylesheet" type="text/css" />
    <script type="text/javascript" src="jquery.min.js"></script>
    <script type="text/javascript" src="jquery.dateRange.js"></script>
 </head>
 <body>
-    <div class="calendarWrap">
-      <input id="date" class="dateRange" type="text"/>
-      <div class="calendar">
-        <a class="filter button"><span>Filter</span></a>
-      </div>
+  <div class="calendarWrap">
+    <input id="date" class="dateRange" type="text"/>
+    <div class="calendar">
+      <a class="filter button"><span>Done</span></a>
     </div>
+  </div>
 
 <script type="text/javascript">
-$(document).ready(function()
-{
-  $('#date').dateRange(
-  {
-     selected: function(dates)
-     {
-        var from = dates[0];
-        var to = dates[1];
+$(document).ready(function() {
+  $('#date').dateRange({
+     selected: function(dates) {
+        var from = dates[0],
+            to = dates[1];
         //do something special
      }
   });

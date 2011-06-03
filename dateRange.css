@@ -74,7 +74,8 @@ div.calendar table td{
   width: 1.6em;
 }
 
-div.calendar table td:hover {
+div.calendar table td:hover,
+div.calendar table td span:hover {
   background-color: #AAA;
   color: #FFF;
 }
@@ -85,7 +86,7 @@ div.calendar td span {
 
 div.calendar td.selected span,
 div.calendar td.highlight span {
-  background:#F1F1F1;
+  background:#DADADA;
 }
 div.calendar a.button {
   border: 2px solid #BBB;
