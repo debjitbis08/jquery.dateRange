@@ -6,7 +6,7 @@
           months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           abbreviations = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-          daySelector = 'tbody td:not(:empty)';
+          daySelector = 'tbody td:not(.disabled)';
 
       return this.each(function() {
         if (this.dateRange) { return false; }
@@ -81,6 +81,8 @@
           },
           clicked: function() {
 
+            $container.find('td.selected').removeClass('selected');
+
             var $td = $(this).addClass('selected'),
                 date = $td.closest('table').data('date');
 
@@ -136,7 +138,7 @@
             start = selected[0].getMonth() < startDate.getMonth() || selected[0].getFullYear() < startDate.getFullYear() ? 0 : selected[0].getDate()-1;
             end = selected[1].getMonth() > endDate.getMonth() || selected[1].getFullYear() > endDate.getFullYear() ? $tds.length : selected[1].getDate();
             for(i = start; i < end; i += 1) {
-              $tds.get(i).className = 'highlight';
+              $($tds[i]).addClass('highlight');
             }               
           },
           loadPrevious: function() {               
@@ -176,8 +178,9 @@
                 last = new Date(fullYear, month + 1, 0),
                 firstDay = first.getDay(),
                 totalDays = last.getDate(),
+                prevLast = new Date(fullYear, month, 0).getDate(),
                 weeks = Math.ceil((totalDays + firstDay) / 7),
-                $table, header, cell, i, j, row, count = 0, daysRow, thead, caption;
+                $table, header, cell, i, j, row, count = 0, daysRow, thead, caption, extra = 1;
 
             if (!table) {
 
@@ -186,22 +189,34 @@
               caption = table.createCaption();
               caption.innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
 
-              for (i = 0; i < weeks; i += 1) {
+              for (i = 0; i < 6; i += 1) {
                 row = table.insertRow(-1);
                 for(j = 0; j < 7; j += 1) {
                   count += 1;
                   cell = row.insertCell(-1);
                   if (count > firstDay && count <= totalDays+firstDay) {
                     $(cell).html('<span>' + (count - firstDay) + '</span>');
+                    $(cell).addClass('calcell');
+                  }
+                  else if (count <= firstDay) {
+                    $(cell).addClass('disabled');
+                    $(cell).html(prevLast - firstDay + count);
+                  }
+                  else if (count > totalDays + firstDay) {
+                    $(cell).addClass('disabled');
+                    $(cell).html(extra);
+                    extra += 1;
                   }
                 }
               }
 
               thead = table.createTHead();
               daysRow = thead.insertRow(0);
+              daysRow.className = 'dayrow';
 
               for(i = 0; i < 7; i += 1) {
                 cell = daysRow.insertCell(-1);
+                cell.className = 'daycell';
                 cell.innerHTML = days[i];
               }
 
