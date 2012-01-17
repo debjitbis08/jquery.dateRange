@@ -27,16 +27,30 @@ div.calendarWrap {
 }
 
 div.calendarWrap input.dateRange {
+  border: none;
+  cursor: pointer;
+}
+
+div.calendarWrap .inputContainer {
   border: 1px solid #CCC;
   cursor: pointer;
-  padding: 4px;
+  padding: 4px 0 4px 4px;
+}
+
+div.calendarWrap .inputContainer:hover {
+  border: 1px solid #777;
+}
+
+div.calendarWrap .actionArrow {
+  background-color: #F2F2F2;
+  padding: 4px 6px;
 }
 
 div.calendar {
   background: #F2F2F2;
   border:1px solid #CCC;
   left: 0;
-  margin-top: -1px;
+  margin-top: 3px;
   overflow:auto;
   padding: 20px 0;
   position:absolute;
@@ -46,7 +60,7 @@ div.calendar {
   top: 25px;
 }
 
-div.calendar .calheader {
+div.calendar h2 {
   text-align: center;
 }
 
@@ -58,14 +72,21 @@ div.calendar .next {
   padding: 0 5px;
 }
 
-div.calendar table {
+div.calendar .start,
+div.calendar .end {
   float:left;
-  margin: 0 10px;
+  margin: 10px;
 }
 
 div.calendar table caption {
   font-weight: bold;
   padding-bottom: 0.6em;
+}
+
+.calendar .calHead {
+  display: block;
+  font-weight: bold;
+  padding: 0 0 5px 10px;
 }
 
 div.calendar table td {
@@ -78,29 +99,29 @@ div.calendar table td {
 }
 
 div.calendar table td.calcell:hover,
-div.calendar table td.calcell span:hover {
+div.calendar table td.calcell a:hover {
   background-color: #426FD9;
   color: #FFF;
   cursor: pointer;
 }
 
-div.calendar td span {
+div.calendar td a {
   color: #0066CC;
   display: block;
 }
 
-div.calendar td.selected span,
-div.calendar td.highlight span {
+div.calendar td.selected a,
+div.calendar td.highlight a {
   background: #B3D4FF;
   color: #000;
 }
 
-div.calendar a.button {
+div.calendar .button {
   border: 2px solid #BBB;
-  clear: left;
+  clear: both;
+  float: left;
   cursor: pointer;
-  float: right;
-  margin: 10px 34px 0 0;
+  margin: 10px 0 0 10px;
   padding: 4px;
 }
 
@@ -141,3 +162,10 @@ div.calendar.nextHidden {
 div.calendar.nextHidden .next {
   display: none;
 }
+
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
