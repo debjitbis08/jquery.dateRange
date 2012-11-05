@@ -5,9 +5,7 @@
   var cache = {};
   $.fn.dateRange = function(options) {
  
-      var defaults = {selected: null, startWith: null, minimumDate: null, maximumDate: null,
-            actionImageUp: "./button_n_arrow_down.gif",
-            actionImageDown: "./button_n_arrow_up.gif",
+      var defaults = {selected: null, startWith: null, minimumDate: null, maximumDate: null, actionImageUp: null, actionImageDown: null,
             show: null,
             hide: null,
             shortcuts: [],
@@ -16,7 +14,11 @@
             doneButtonText: 'Done',
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            shortDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+            shortDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            actionImageUp: "./button_n_arrow_down.gif",
+            actionImageDown: "./button_n_arrow_up.gif",
+            maximumDate: new Date(new Date().getFullYear() + 10, 11, 31),
+            minimumDate: new Date(new Date().getFullYear() - 10, 1, 1)
           },
           opts = $.extend({}, defaults, options),
           months = opts.months,
@@ -29,7 +31,7 @@
         if (this.dateRange) { return false; }
      
         var $input = $(this),
-            $container, selecting, selected,
+            $container, selecting, selected = [],
  
         self = {
           initialize: function() {              
@@ -118,9 +120,6 @@
               selected = opts.startWith;
               self.rangeSelected();
             }
-            else {
-              selected = [new Date(), new Date()];
-            }
           },
           entered: function() {
             var values = $input.val().split('-'),
@@ -207,9 +206,11 @@
               selected[0] = selected[1];
               selected[1] = x;
             }
-            $input.val(self.format(selected[0]) + ' - ' + self.format(selected[1]));
-            self.highlight($container.find('table:first'));
-            self.highlight($container.find('table:last'));
+            if (selected.length === 2) {
+              $input.val(self.format(selected[0]) + ' - ' + self.format(selected[1]));
+              self.highlight($container.find('table:first'));
+              self.highlight($container.find('table:last'));
+            }
           },
           done: function () {
             if (selected.length === 2) {
@@ -258,7 +259,7 @@
             var i, $container, $doneButton, htmlStructure = [], options = [];
  
             $input.wrap('<div class="calendarWrap"></div>');
-            $container = $('<div class="calendar clearfix"></div>').insertAfter($input);
+            $container = $('<div class="calendar"></div>').insertAfter($input);
             $input.wrap('<span class="inputContainer"></span>')
                   .after('<span class="actionArrow"><img src="' + opts.actionImageUp +'"/></span>');
 
@@ -355,6 +356,9 @@
             return tableHtml;
           },
           format: function(date) {
+            if (!date) {
+              return "";
+            }
             if (opts.formatDate) {
               return opts.formatDate(date);
             }
@@ -366,4 +370,3 @@
       });
   };
 })(jQuery);
-

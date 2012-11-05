@@ -75,7 +75,7 @@ div.calendar .next {
 div.calendar .start,
 div.calendar .end {
   float:left;
-  margin: 10px;
+  margin: 0 10px;
 }
 
 div.calendar table caption {
@@ -86,7 +86,7 @@ div.calendar table caption {
 .calendar .calHead {
   display: block;
   font-weight: bold;
-  padding: 0 0 5px 10px;
+  padding: 0 0 5px;
 }
 
 div.calendar table td {
@@ -141,6 +141,31 @@ div.calendar td.daycell {
   border: none;
   font-weight: bold;
   width: 2em;
+}
+
+.calendar .rangeSelector {
+  border-left: 1px solid #CCC;
+  float: left;
+  margin-left: 15px;
+  padding-left: 15px;
+}
+
+.calendar .dateOptions {
+  float: left;
+  list-style: none;
+  margin-left: 10px;
+  max-width: 100px;
+}
+
+.calendar .dateOptions li {
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.calendar .dateOptions li:hover {
+  background-color: #426FD9;
+  color: #FFF;
 }
 
 div.calendar.nextHidden a.button {
