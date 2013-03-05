@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jQuery Date Range by debjitbis08</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>jQuery Date Range</h1>
+        <p>A very lightweight date range picker using jQuery</p>
+
+        <p class="view"><a href="https://github.com/debjitbis08/jquery.dateRange">View the Project on GitHub <small>debjitbis08/jquery.dateRange</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/debjitbis08/jquery.dateRange/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/debjitbis08/jquery.dateRange/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/debjitbis08/jquery.dateRange">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>jQuery Date Range</h1>
+
+<h2>About</h2>
+
+<p>This is a very simple and lightweight date range picker. It is extensible but not highly configurable. Do not expect a feature rich widget rather a base upon which something can be built per requirement. Thanks to <a href="https://github.com/karlseguin/" title="Karl Seguin's github profile">Karl Seguin</a> for this excellent work.</p>
+
+<h2>Features Supported</h2>
+
+<ul>
+<li>Lot more configuration options.</li>
+<li>Localization now supported but has to be supplied as configuration.</li>
+<li>Shortcut support, for example Last month, Previous Month etc. These have to be passed in through configuration, nothing built-in.</li>
+</ul><h2>Specifying Shortcuts</h2>
+
+<p>Shortcuts configuration property is an array of objects with two properties 'element' and 'callback'. The 'element' property will contain the text to be displayed and the callback a function which returns a date range. For example:</p>
+
+<pre><code>shortcuts: [
+  {
+    'element': 'This Month',
+    'callback': function () {
+      var today = new Date(),
+          from = new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
+          to = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+
+      return [from, today];
+    }
+  },
+  {
+    'element': 'Last Month',
+    'callback': function () {
+      var today = new Date(),
+          from = new Date(today.getFullYear(), today.getMonth() - 1, 1, 0, 0, 0),
+          to = new Date(today.getFullYear(), today.getMonth(), 0, 0, 0, 0);
+
+      return [from, to];
+    }
+  }
+]
+</code></pre>
+
+<h2>Requirement</h2>
+
+<p>jQuery 1.6.1 (though I have not tested it with lower versions)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/debjitbis08">debjitbis08</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
