@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/dateRange.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -28,17 +29,86 @@
         </ul>
       </header>
       <section>
-        <h1>jQuery Date Range</h1>
 
 <h2>About</h2>
 
-<p>This is a very simple and lightweight date range picker. It is extensible but not highly configurable. Do not expect a feature rich widget rather a base upon which something can be built per requirement. Thanks to <a href="https://github.com/karlseguin/" title="Karl Seguin's github profile">Karl Seguin</a> for this excellent work.</p>
+<p>This is a very simple and lightweight date range picker. It is extensible but not highly configurable. Do not expect a feature rich widget, rather a base upon which something can be built per requirement. Thanks to <a href="https://github.com/karlseguin/" title="Karl Seguin's github profile">Karl Seguin</a> for his excellent work.</p>
+
+<h2>Demo</h2>
+
+
+<p><input id="date" class="dateRange" type="text"/></p>
+
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery.dateRange.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#date').dateRange({
+    selected: function(dates) {
+      var from = dates[0],
+          to = dates[1];
+      //do something special
+    },
+    shortcuts: [
+        {
+          'element': 'This Month',
+          'callback': function () {
+            var today = new Date(),
+                from = new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
+                to = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+
+            return [from, today];
+          }
+        },
+        {
+          'element': 'Last Month',
+          'callback': function () {
+            var today = new Date(),
+                from = new Date(today.getFullYear(), today.getMonth() - 1, 1, 0, 0, 0),
+                to = new Date(today.getFullYear(), today.getMonth(), 0, 0, 0, 0);
+            
+            return [from, to];
+          }
+        },
+        {
+          'element': 'Last 6 Months',
+          'callback': function () {
+            var today = new Date(),
+                from = new Date(today.getFullYear(), today.getMonth()  - 5, 1, 0, 0, 0),
+                to = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+
+            return [from, to];
+          }
+        },
+        {
+          'element': 'This Year',
+          'callback': function () {
+            var today = new Date(),
+                from = new Date(today.getFullYear(), 0, 1, 0, 0),
+                to = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+
+            return [from, to];
+          }
+        },
+        {
+          'element': 'Last Year',
+          'callback': function () {
+            var today = new Date(),
+                from = new Date(today.getFullYear() - 1, 0, 1, 0, 0, 0),
+                to = new Date(today.getFullYear() - 1, 11, 31, 0, 0, 0);
+
+            return [from, to];
+          }
+        }
+      ]
+  });
+});
+</script>
 
 <h2>Features Supported</h2>
 
 <ul>
-<li>Lot more configuration options.</li>
-<li>Localization now supported but has to be supplied as configuration.</li>
+<li>Localization supported but has to be supplied as configuration.</li>
 <li>Shortcut support, for example Last month, Previous Month etc. These have to be passed in through configuration, nothing built-in.</li>
 </ul><h2>Specifying Shortcuts</h2>
 
